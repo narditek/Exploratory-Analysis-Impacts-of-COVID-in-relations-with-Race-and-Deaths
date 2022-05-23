@@ -2,6 +2,7 @@
 # Introduction
 
 Names: Nardos Tekle, Meas Kassahun, Khadija Yassin 
+
 _**Domain of Interest**_
 
 Our domain interest focuses on the impacts of COVID-19 as it relates with race and death. 
