@@ -28,8 +28,11 @@ _**What questions can be answered using the data in this dataset?**_
 Using the data in this dataset, we can answer questions such as:
 
 How has COVID impacted people by state?
+
 How do the impacts of COVID vary by race? 
+
 What are varations are seen in terms of number of death due to COVID?
+
 How has the their relationship with the healthcare industry changed pre and post pandemic?
 
 
