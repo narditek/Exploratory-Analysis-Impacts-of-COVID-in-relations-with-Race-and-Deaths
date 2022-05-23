@@ -1,0 +1,145 @@
+---
+title: "Exploratory Data Analysis Assignment"
+author: "Khadija Y, Nardos T, Meas K"
+date: "5/22/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r include=FALSE}
+library("Tidyverse")
+library("dplyr")
+library("stringr")
+library("ggplot2")
+source("Chart 1.R")
+source("Chart 2.R")
+source("Chart 3.R")
+source("Aggregated data(Exploratory Data Analysis).R")
+source("Summary Information-Exploratory Analysis.R")
+```
+##Introduction
+We are interested in focusing on the impacts of Covid-19, specifically in relations to race and death.Its clear that throughout the pandemic, the impacts of COVID-19 have varied in race, death, vaccination rates among other categories. As students of healthcare field related majors (Public Health, Medical Anthropology) we were interested in seeing data on how COVID has affected populations by race and deaths.
+#DataSet Information
+My group had retrieved our dataset from the CDC and included the raw data into github so that it was more accessible for this assignment.This is the website that we originally found our dataset.https://data.cdc.gov/NCHS/Distribution-of-COVID-19-Deaths-and-Populations-by/jwta-jxbg/data
+
+#Summary Information 
+install.packages("dplyr")
+library("dplyr")
+
+Covid_Demo<- read.csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
+
+summary_info<-list()
+summary_info$num_observations<- nrow(Covid_Demo)
+- For this portion of the summary info, we found that there are 3,710 rows within this study.
+summary_info$num_features<- ncol(Covid_Demo)
+For this portion of the summary info, we found that there are 13 columns within this study.
+
+summary_info$most_state_death<- max(Covid_Demo$State)
+We used this to find out the state with the most state deaths and we found that Wyoming has the state with the highest deaths. 
+summary_info$most_race_death<- max(Covid_Demo$Race.Hispanic.origin)
+With this, we wanted to know the highest death number specifically for the hispanic race. 
+summary_info$mean_covid_death<- mean(Covid_Demo$Count.of.COVID.19.deaths)
+na.omit(summary_info$mean_covid_death)
+With this information, we wanted to know the mean of covid deaths within this dataset.
+
+summary_info$most_state_death<- Covid_Demo %>%
+  filter(Count.of.COVID.19.deaths == max(Count.of.COVID.19.deaths, na.rm = T)) %>%
+  select(Count.of.COVID.19.deaths, State)
+This would list out the count of covid deaths as well as the states. 
+
+#Aggregated Table 
+#load the tidyverse, dplyr, stringr package
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("dplyr")
+library("dplyr")
+install.packages("stringr")
+library(stringr)
+
+
+#load the dataset
+Covid_Dem<-read_csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
+#create a new dataset that includes only the following columns: Race/Hispanic origin, Count of Covid-19 Death, and state
+Covid_Dem_dataset <- Covid_Dem[c("State", "Race/Hispanic origin" ,"Count of COVID-19 deaths")]
+#total deaths by covid by States
+state_death<-Covid_Dem_dataset %>% 
+  group_by(State) %>% 
+  summarize(Count=n()) %>% 
+  arrange(Count)
+
+#The States, specifically top 3 states with the highest Covid deaths
+Covid_dem_State_3_highest_death<-State_death %>% 
+  head(3)
+## Including Charts
+#Chart 1
+
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(group_state_death)
+```
+# Load ggplot2
+library(ggplot2)
+
+Covid_Demo<- read.csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
+
+group_state_death<-group_by(Covid_Demo, Count.of.COVID.19.deaths, State)
+
+ggplot(group_state_death,aes(x =Count.of.COVID.19.deaths, y= State)) +
+  geom_bar(stat = "identity")
+  
+  We created a bar graph to see the correaltion between the covid deaths compared to the state levels.
+#Chart 2
+```{r pressure, echo=FALSE}
+plot(Covid_Demo))
+```
+We created a box plot to see how the the correlation between death rates compared to certain races, in this case we used those of hispanic orgin.
+library("ggplot2")
+library(viridis)
+library(hrbrthemes)
+
+Covid_Demo<- read.csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
+Covid_Demo%>%
+ggplot(aes(x=Count.of.COVID.19.deaths, y= Race.Hispanic.origin, fill= Count.of.COVID.19.deaths)) +
+ geom_boxplot() +
+ scale_fill_viridis(discrete = TRUE, alpha= 0.6, option = "A") +
+ theme_ipsum () +
+ theme (
+   legend.position = "none",
+   plot.title = element_text(size=11)
+ ) +
+   ggtitle("Basic boxplot") +
+   xlab("")
+ 
+ ```{r pressure, echo=FALSE}
+plot(Covid_Dem))
+```
+#Chart 3
+We used a histogram because we wanted to compare the distribution of covid 19 deaths to race, origin and state
+#load the dataset and package
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("dplyr")
+library("dplyr")
+install.packages("stringr")
+library(stringr)
+library(ggplot2)
+
+
+#load/create the dataset
+Covid_Dem<-read.csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
+
+#Make the histogram
+Covid_Dem %>%
+  filter(Distribution.of.COVID.19.deaths....<500 ) %>%
+  ggplot( aes(x=Distribution.of.COVID.19.deaths....)) +
+  geom_density(fill="#69b3a2", color="#e9ecef", alpha=0.8)
+  
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
