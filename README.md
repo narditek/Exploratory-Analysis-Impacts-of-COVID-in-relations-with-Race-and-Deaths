@@ -31,8 +31,8 @@ How has COVID impacted people by state?
 
 How do the impacts of COVID vary by race? 
 
-What are varations are seen in terms of number of death due to COVID?
+What varations are seen in terms of number of death due to COVID?
 
-How has the their relationship with the healthcare industry changed pre and post pandemic?
+How has relationship with the healthcare industry and people of color changed pre and post pandemic?
 
 
