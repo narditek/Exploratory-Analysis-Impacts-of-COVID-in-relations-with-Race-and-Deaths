@@ -16,7 +16,7 @@ library(hrbrthemes)
 Covid_Dem<- read.csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
 
 
-# Define UI for application that draws a histogram
+# Define UI for application that draws a Density plot
 ui <- fluidPage(
     
     # Application title
