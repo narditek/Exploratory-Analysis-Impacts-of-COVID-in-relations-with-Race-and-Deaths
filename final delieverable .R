@@ -11,7 +11,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(hrbrthemes)
-
+#This interactive Graph is a density plot graph and we are using this to see the a visual representation of the distribution of Covid-19 deaths.
 #upload the datset
 Covid_Dem<- read.csv("https://raw.githubusercontent.com/narditek/Exploratory-Analysis-Impacts-of-COVID-in-relations-with-Race-and-Deaths/main/Distribution_of_COVID-19_Deaths_and_Populations__by_Jurisdiction__Age__and_Race_and_Hispanic_Origin%20(1).csv")
 
@@ -27,7 +27,7 @@ ui <- fluidPage(
         sidebarPanel(
             sliderInput(
                 "range",
-                "Number of Covid-19 deaths:",
+                "Distribution of Covid-19 deaths:",
                 min = 0,
                 max = 300,
                 value = 300
